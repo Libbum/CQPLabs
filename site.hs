@@ -30,6 +30,12 @@ main = hakyllWith config $ do
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
 
+    match "projects/*" $ do
+        route $ setExtension "html"
+        compile $ pandocCompiler
+            >>= loadAndApplyTemplate "templates/default.html" defaultContext
+            >>= relativizeUrls
+
     create ["archive.html"] $ do
         route idRoute
         compile $ do
@@ -44,6 +50,20 @@ main = hakyllWith config $ do
                 >>= loadAndApplyTemplate "templates/default.html" archiveCtx
                 >>= relativizeUrls
 
+    create ["projects.html"] $ do
+        route idRoute
+        compile $ do
+            projects <- recentFirst =<< loadAll "projects/*"
+            let projectCtx =
+                    listField "projects" defaultContext (return projects) `mappend`
+                    constField "title" "Projects"                  `mappend`
+                    defaultContext
+
+            makeItem ""
+                >>= loadAndApplyTemplate "templates/project.html" projectCtx
+                >>= loadAndApplyTemplate "templates/default.html" projectCtx
+                >>= relativizeUrls
+
     create ["atom.xml"] $ do
         route idRoute
         compile $ do
@@ -56,8 +76,10 @@ main = hakyllWith config $ do
         route idRoute
         compile $ do
             posts <- recentFirst =<< loadAll "projects/*/*"
+            projects <- recentFirst =<< loadAll "projects/*"
             let indexCtx =
                     listField "posts" postCtx (return posts) `mappend`
+                    listField "projects" defaultContext (return projects) `mappend`
                     constField "title" "Home"                `mappend`
                     defaultContext
 
