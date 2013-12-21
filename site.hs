@@ -6,8 +6,8 @@ import           Hakyll
 
 --------------------------------------------------------------------------------
 main :: IO ()
-main = hakyll $ do
-    match ("images/*" .||. "favicon.ico") $ do
+main = hakyllWith config $ do
+    match ("images/*" .||. "favicon.ico" .||. "js/*" .||. "resources/*") $ do
         route   idRoute
         compile copyFileCompiler
 
@@ -65,3 +65,7 @@ postCtx :: Context String
 postCtx =
     dateField "date" "%B %e, %Y" `mappend`
     defaultContext
+
+config :: Configuration
+config = defaultConfiguration
+         { deployCommand = "rsync -avz -e ssh ./_site/ Neophilus:www/cqplabs" }

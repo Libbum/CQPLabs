@@ -2,15 +2,87 @@
 title: Home
 ---
 
-<h2>Welcome</h2>
+<div class="front-page">
 
-<img src="/images/haskell-logo.png" style="float: right; margin: 10px;" />
 
-<p>Welcome to my blog!</p>
+        <div id="splash">
 
-<p>I've reproduced a list of recent posts here for your reading pleasure:</p>
+          <div class="slideshow">
 
-<h2>Posts</h2>
-$partial("templates/post-list.html")$
+            <div class="content">
+              <img width="960" height="282" src="/images/splash-img.png" title="CrayFish" />
+              <p class="blurb">
+                The hare-brained scheme division of the
+                <a href="http://www.rmit.edu.au/appliedsciences/chemical-quantum-physics"><strong>Chemical and Quantum Physics</strong></a> 
+                group at RMIT University.
+              </p>
+            </div>
+
+            <div class="content" style="display: none;">
+              <img width="960" height="282" src="/images/splash-img-2.png" title="AngryFuzzy" />
+              <p class="blurb">
+               A skunkworks project worth every invested penny.
+              </p>
+            </div>
+
+            <div class="content" style="display: none;">
+              <img width="960" height="282" src="/images/splash-img-3.png" title="Science!" />
+              <p class="blurb">BECAUSE IT'S FUCKING AWESOME
+              </p>
+            </div>
+
+
+          </div>
+
+          <div id="pager"> </div>
+
+        </div>
+
+        <div id="content">
+          <div class="newspaper">
+            <div id="about" class="section left">
+              <div class="inner">
+
+                <h2>WTF?</h2>
+
+                <p>
+
+                  <strong>CQPLαbs</strong> was founded over the 2013 annual Christmas breakup 
+                  cricket match between staff and students of the Physics Department
+                  at <a href="http://www.rmit.edu.au">RMIT</a> University. Due to the days' hot 
+                  weather; liquid replenishment was in high demand. Unfortunately the water in 
+                  our eskys was in its solid phase and everyone was forced to ration on beer and cider alone. 
+
+                <p>
+                  
+                  As the sun went down, discussions including the awesomeness of 
+                  <a href="http://www.haskell.org">Haskell</a> programming and 
+                  the absolute necessity of a group coat of arms were solidified into
+                  a number of projects that became more and more ridiculous. Too good
+                  to lay to rest, this archive was established to document the build processes
+                  required to breathe life into the finest of drunken brain farts.
+
+                </p>
+
+              </div>
+            </div><!--end about-->
+
+            <div id="project-status" class="section right">
+              <div class="inner">
+<h2>Recent Updates</h2>
+<ul class="compact">
+    $partial("templates/post-list.html")$
+</ul>
 
 <p>…or you can find more in the <a href="/archive.html">archives</a>.
+
+              </div><!--end inner-->
+            </div><!--end project-status-->
+
+          </div>
+
+        </div><!--end content-->
+
+</div>
+
+    </div><!--end main-->
