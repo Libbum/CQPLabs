@@ -1,7 +1,40 @@
-<div class="info">
+<div class='subpage' id='content'>
+    <div class='inner-page'>
+      <div class='newspaper'>
+
+        
+
+  <div id='blog-post'>
+
+    <h2 class='crumb-title'>
+      <span itemscope='itemscope' itemtype='http://data-vocabulary.org/Breadcrumb'>
+        <a itemprop='url' href='/projects/$main$.html'><span itemprop='title'>$main$</span></a>
+      </span>
+      <span class='crumb-divider'>»</span>
+      <span itemscope='itemscope' itemtype='http://data-vocabulary.org/Breadcrumb'>
+        <a itemprop='url' href='#'><span itemprop='title'>$title$</span></a>
+      </span>
+    </h2>
+
+    <div class='post-meta'>
+    $if(date)$
+        <div class='post-date'>$date$</div>
+    $endif$
     $if(author)$
-        by $author$
+        <div class='post-summary'>by $author$</div>
     $endif$
 </div>
 
+<div class='post-content'>
+      <div class='markdown'>
+
 $body$
+
+</div>
+    </div>
+  </div>
+
+  </div>
+    </div>
+
+  </div><!--end content-->
