@@ -1,5 +1,6 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
+import           Control.Applicative ((<$>))
 import           Data.Monoid (mappend)
 import           Hakyll
 
@@ -25,6 +26,7 @@ main = hakyllWith config $ do
         route $ setExtension "html"
         compile $ pandocCompiler
             >>= loadAndApplyTemplate "templates/post.html"    postCtx
+            >>= saveSnapshot "content"
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
 
@@ -41,6 +43,13 @@ main = hakyllWith config $ do
                 >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
                 >>= loadAndApplyTemplate "templates/default.html" archiveCtx
                 >>= relativizeUrls
+
+    create ["atom.xml"] $ do
+        route idRoute
+        compile $ do
+            let feedCtx = postCtx `mappend` bodyField "description"
+            posts <- (take 10) <$> (recentFirst =<< loadAllSnapshots "projects/*/*" "content")
+            renderAtom atomFeedConfig feedCtx posts
 
 
     match "index.html" $ do
@@ -69,3 +78,13 @@ postCtx =
 config :: Configuration
 config = defaultConfiguration
          { deployCommand = "rsync -avz -e ssh ./_site/ Neophilus:www/cqplabs" }
+
+atomFeedConfig :: FeedConfiguration
+atomFeedConfig = FeedConfiguration
+    { feedTitle       = "CQPLabs"
+    , feedDescription = "The hare-brained scheme division of CQP"
+    , feedAuthorName  = "CQPLabs"
+    , feedAuthorEmail = "cqplabs@rmit.edu.au"
+    , feedRoot        = "http://cqplabs.neophilus.net"
+    }
+
