@@ -3,6 +3,4 @@ site
 *.o
 *.hi
 _*
-posts/
-resources/
 drafts/

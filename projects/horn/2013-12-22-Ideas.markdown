@@ -1,5 +1,5 @@
 ---
-title: S.P.Q.R.
+title: More ideas for the horn
 main: horn
 ---
 

@@ -5,7 +5,8 @@ deploy: clean rebuild
 	./site deploy
 
 post:
-	touch posts/`date +%Y-%m-%d`-${TITLE}.markdown
+	echo -e '---\ntitle: '${TITLE}'\nmain: '${PROJECT}'\n---\n\n' > projects/${PROJECT}/`date +%Y-%m-%d`-${TITLE}.markdown
+	vim projects/${PROJECT}/`date +%Y-%m-%d`-${TITLE}.markdown
 
 preview: rebuild
 	./site watch

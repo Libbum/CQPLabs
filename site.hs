@@ -27,6 +27,7 @@ main = hakyllWith config $ do
     match "projects/*" $ do
         route $ setExtension "html"
         compile $ pandocCompiler
+            >>= loadAndApplyTemplate "templates/project.html" defaultContext
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
             >>= relativizeUrls
 
@@ -54,7 +55,7 @@ main = hakyllWith config $ do
                     defaultContext
 
             makeItem ""
-                >>= loadAndApplyTemplate "templates/project.html" projectCtx
+                >>= loadAndApplyTemplate "templates/projects.html" projectCtx
                 >>= loadAndApplyTemplate "templates/default.html" projectCtx
                 >>= relativizeUrls
 

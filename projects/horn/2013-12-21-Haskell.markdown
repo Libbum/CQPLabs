@@ -1,0 +1,7 @@
+---
+title: The Great Haskell
+main: horn
+author: Tim & David
+---
+
+Here lies the first post for the Haskell Horn.
