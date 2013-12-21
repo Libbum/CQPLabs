@@ -16,12 +16,6 @@ main = hakyllWith config $ do
         route   idRoute
         compile compressCssCompiler
 
-    match (fromList ["about.rst", "contact.markdown"]) $ do
-        route   $ setExtension "html"
-        compile $ pandocCompiler
-            >>= loadAndApplyTemplate "templates/default.html" defaultContext
-            >>= relativizeUrls
-
     match "projects/*/*" $ do
         route $ setExtension "html"
         compile $ pandocCompiler
@@ -75,7 +69,7 @@ main = hakyllWith config $ do
     match "index.html" $ do
         route idRoute
         compile $ do
-            posts <- recentFirst =<< loadAll "projects/*/*"
+            posts <- (take 5) <$> (recentFirst =<< loadAll "projects/*/*")
             projects <- recentFirst =<< loadAll "projects/*"
             let indexCtx =
                     listField "posts" postCtx (return posts) `mappend`
