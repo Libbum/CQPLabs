@@ -1,13 +1,15 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
-import           Control.Applicative ((<$>))
-import           Data.Monoid (mappend)
-import           Hakyll
-
+import Control.Applicative ((<$>))
+import Data.Monoid (mappend)
+import Hakyll
+import Site.Fields
+import Site.Pandoc
 
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyllWith config $ do
+
     match ("images/*" .||. "favicon.ico" .||. "js/*" .||. "resources/*") $ do
         route   idRoute
         compile copyFileCompiler
@@ -18,17 +20,19 @@ main = hakyllWith config $ do
 
     match "projects/*/*" $ do
         route $ setExtension "html"
-        compile $ pandocCompiler
-            >>= loadAndApplyTemplate "templates/post.html"    postCtx
+        compile $ do
+            compiled <- getResourceBody >>= pandocHtml5Compiler (storeDirectory config)
+            loadAndApplyTemplate "templates/post.html" postCtx compiled
             >>= saveSnapshot "content"
-            >>= loadAndApplyTemplate "templates/default.html" postCtx
+            >>= loadAndApplyTemplate "templates/default.html" (mathCtx `mappend` postCtx)
             >>= relativizeUrls
 
     match "projects/*" $ do
         route $ setExtension "html"
-        compile $ pandocCompiler
-            >>= loadAndApplyTemplate "templates/project.html" defaultContext
-            >>= loadAndApplyTemplate "templates/default.html" defaultContext
+        compile $ do
+            compiled <- getResourceBody >>= pandocHtml5Compiler (storeDirectory config)
+            loadAndApplyTemplate "templates/project.html" defaultContext compiled
+            >>= loadAndApplyTemplate "templates/default.html" (mathCtx `mappend` defaultContext)
             >>= relativizeUrls
 
     create ["archive.html"] $ do
@@ -51,12 +55,12 @@ main = hakyllWith config $ do
             projects <- recentFirst =<< loadAll "projects/*"
             let projectCtx =
                     listField "projects" defaultContext (return projects) `mappend`
-                    constField "title" "Projects"                  `mappend`
+                    constField "title" "Projects"                         `mappend`
                     defaultContext
 
             makeItem ""
                 >>= loadAndApplyTemplate "templates/projects.html" projectCtx
-                >>= loadAndApplyTemplate "templates/default.html" projectCtx
+                >>= loadAndApplyTemplate "templates/default.html"  projectCtx
                 >>= relativizeUrls
 
     create ["atom.xml"] $ do
@@ -73,25 +77,20 @@ main = hakyllWith config $ do
             posts <- (take 5) <$> (recentFirst =<< loadAll "projects/*/*")
             projects <- recentFirst =<< loadAll "projects/*"
             let indexCtx =
-                    listField "posts" postCtx (return posts) `mappend`
+                    listField "posts" postCtx (return posts)              `mappend`
                     listField "projects" defaultContext (return projects) `mappend`
-                    constField "title" "Home"                `mappend`
+                    constField "title" "Home"                             `mappend`
                     defaultContext
 
             getResourceBody
                 >>= applyAsTemplate indexCtx
-                >>= loadAndApplyTemplate "templates/default.html" indexCtx
+                >>= loadAndApplyTemplate "templates/default.html" (mathCtx `mappend` indexCtx)
                 >>= relativizeUrls
 
     match "templates/*" $ compile templateCompiler
 
 
 --------------------------------------------------------------------------------
-postCtx :: Context String
-postCtx =
-    dateField "date" "%b %e, %Y" `mappend`
-    defaultContext
-
 config :: Configuration
 config = defaultConfiguration
          { deployCommand = "rsync -avz -e ssh ./_site/ Neophilus:www/cqplabs" }

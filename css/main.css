@@ -124,7 +124,7 @@ dl span.linklist {
     font-family: "PT Sans", "Arial", sans-serif;
 }
 
-pre.code, pre.sourceCode, pre.shell, .faqs {
+pre.code, .code-container, pre.shell, .faqs {
     background: #222 url(/images/black-screen.png) scroll repeat-x top left;
     color: #ffbf00;
     width: 87%;
@@ -294,37 +294,6 @@ td.summary {
     margin-bottom: 1em;
 }
 
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode, table.sourceCode pre 
-   { margin: 0; padding: 0; border: 0; vertical-align: baseline; border: none; }
-td.lineNumbers { text-align: right; background-color: #ccc; color: black; padding-right: 5px; padding-left: 5px; } 
-td.sourceCode { padding-left: 5px; }
-
-li pre.sourceCode { font-size: 80%; padding: 16px 16px 16px 32px; margin-top: 29px;}
-pre.sourceCode { }
-pre.sourceCode span.Normal { }
-pre.sourceCode span.Keyword, pre.sourceCode span.kw { font-weight: bold; } 
-pre.sourceCode span.DataType, pre.sourceCode span.dt { color: #ff0; }
-pre.sourceCode span.DecVal, pre.sourceCode span.de { color: #4f4; }
-pre.sourceCode span.BaseN { color: #4f4; }
-pre.sourceCode span.Float, pre.sourceCode span.fl { color: #4f4; }
-pre.sourceCode span.Char, pre.sourceCode span.ch { color: #4f4; }
-pre.sourceCode span.String, pre.sourceCode span.st { color: #4f4; }
-pre.sourceCode span.Comment, pre.sourceCode span.co { color: #999; font-style: italic; }
-pre.sourceCode span.Others { }
-pre.sourceCode span.Alert { color: #4f4; font-weight: bold; }
-pre.sourceCode span.Function, pre.sourceCode span.fu { color: #C4E7FF; }
-pre.sourceCode span.RegionMarker { }
-pre.sourceCode span.Error, pre.sourceCode span.er { color: #f44; font-weight: bold; }
-
-pre.sourceCode span.ModuleName, pre.sourceCode span.mo { color: #f44; } 
-pre.sourceCode span.Keyword, pre.sourceCode span.kw { color: #C4E7FF; }
-pre.sourceCode span.FunctionDefinition { color: #C4E7FF; }
-pre.sourceCode span.Class { color: #C4E7FF; font-weight: bold; }
-pre.sourceCode span.Constructor { font-weight: bold; }
-pre.sourceCode span.DataConstructor { color: #C4E7FF; }
-pre.sourceCode span.TypeConstructor { font-weight: bold; }
-pre.sourceCode span.InfixOperator { color: #aaa; }
-
 
 .singlecolumn {
     width: 728px;
@@ -332,7 +301,7 @@ pre.sourceCode span.InfixOperator { color: #aaa; }
     padding-bottom: 58px;
 }
 
-.singlecolumn pre.sourceCode,
+.singlecolumn .code-container,
 .singlecolumn pre.code,
 .singlecolumn pre.shell {
     width: 656px;
