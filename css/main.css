@@ -19,6 +19,18 @@ tt, code, pre {
     line-height: 29px;
 }
 
+figcaption {
+    color: gray;
+    text-align: center;
+    font-family: "Liberation Mono", monospace;
+    font-size: 90%;
+    line-height: 29px;
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+    top: -24px;
+}
+
 /*a:link,a:visited{ color: #ad104f; text-decoration: none; }*/
 a:link,a:visited{ 
     color: #2B7EA1; 
