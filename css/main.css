@@ -645,6 +645,7 @@ p.foundabug {
 #heading img{
     position: relative;
     top: -20px;
+    float: left;
 }
 
 #apiheader .inner{
