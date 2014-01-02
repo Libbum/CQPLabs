@@ -138,9 +138,8 @@ dl span.linklist {
 pre.code, .code-container, pre.shell, .faqs {
     background: #222 url(/images/black-screen.png) scroll repeat-x top left;
     color: #ffbf00;
-    width: 87%;
     margin: 0px auto 5px auto;
-    padding: 16px;
+    padding: 14px;
 
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
@@ -313,6 +312,8 @@ figure {
 
 figure.code {
     text-align: left;
+    font-size: 16px;
+    margin: 0;
 }
 
 blockquote {

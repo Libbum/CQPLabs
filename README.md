@@ -4,4 +4,5 @@ This code is distributed under the [MIT License](http://opensource.org/licenses/
 
 ## TODO:
 
-* [ ] Caption on code is finn but on figures it's not.
+* [X] Caption on code is fine but on figures it's not.
+* [ ] Project pages should have a list of blog posts on them.
