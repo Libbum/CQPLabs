@@ -1,0 +1,13 @@
+---
+title: Teensy
+main: chadburn
+author: Tim
+---
+
+The Teensy arrived in the mail today. It's actually a lot smaller than I thought:
+
+![A gigantic 5c piece](/images/teensy.jpg)
+
+Depending on how I go today I may start working on the hardware components of the chadburn, but this is unlikely. This post will be completed when the prototype is functioning.
+
+
