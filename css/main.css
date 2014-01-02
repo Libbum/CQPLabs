@@ -28,7 +28,6 @@ figcaption {
     margin: 0px;
     padding: 0px;
     position: relative;
-    top: -24px;
 }
 
 /*a:link,a:visited{ color: #ad104f; text-decoration: none; }*/
@@ -140,7 +139,7 @@ pre.code, .code-container, pre.shell, .faqs {
     background: #222 url(/images/black-screen.png) scroll repeat-x top left;
     color: #ffbf00;
     width: 87%;
-    margin: 0px auto 29px auto;
+    margin: 0px auto 5px auto;
     padding: 16px;
 
     -moz-border-radius: 10px;
@@ -308,6 +307,13 @@ td.summary {
     margin-bottom: 1em;
 }
 
+figure {
+    text-align: center;
+}
+
+figure.code {
+    text-align: left;
+}
 
 .singlecolumn {
     font-size: 22px;
