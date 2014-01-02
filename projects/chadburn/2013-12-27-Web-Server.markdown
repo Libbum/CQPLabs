@@ -4,7 +4,7 @@ main: chadburn
 author: Tim
 ---
 
-The Web Server component of the E.O.T. will probably be the most complicated, so I started with it. A [Github repo](https://github.com/Libbum/Chadburn) has also been created that will hold the panel and the Teensy control code too.
+The Web Server component of the E.O.T. will probably be the most complicated, so I started with it. A [Github repo](https://github.com/Libbum/Chadburn) has also been created that will hold the [panel](/projects/chadburn/2014-01-01-EOT-Panel.html) and the Teensy control code too.
 
 The soft plan at the moment will be to write a number / status value to a file via the Teensy; which will be written in `C`. Implementing the rest of the stack in `C` is madness considering we have no need to keep everything embedded.
 
@@ -29,6 +29,8 @@ Clients are currently identified by `uuid`, but in the future this can be change
 The only other thing of note is that I've implemented a graceful shutdown so Jared (or any other sudoer) can call a `kill -2` on the server to halt it if it's being an ass. It will call shutdown routines for the watcher and allow any further socket communication to cease (with a maximum waiting time of 5 seconds) before ultimately killing itself.
 
 The code for [v0.5](https://github.com/Libbum/Chadburn/tree/3ca93285c219a7ae818c116e12eff649864bba79) is posted below with enough comments to get you by. Most of those reading this will be familiar enough with `Matlab` to be able to 'read' the `Python` syntax. 
+
+# server.py {#code}
 
 ~~~ {lang="python"}
 #!/usr/bin/python2

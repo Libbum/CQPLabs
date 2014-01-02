@@ -1,0 +1,27 @@
+---
+title: E.O.T. Panel
+main: chadburn
+author: Tim
+---
+
+Whilst the panel is ultimately served up by the Web Server, I thought it warranted a separate post.
+
+In the name of doing things as difficult as possible, but the end result being technically and visually awesome, I decided that the Chadburn itself should be constructed as an [svg](http://en.wikipedia.org/wiki/Scalable_Vector_Graphics), considering its support for both animation and interactivity; the fact that [Inkscape](http://www.inkscape.org/en/) has scared me for quite some time (& this should be rectified) and because flash is, well... no.
+
+I found Inkscape to be usable, although a bit clunky. It's output is pretty bloated too, but as svg's are essentially just xml markup they were surprisingly easy to optimise. Fat could just be trimmed out line by line. When it comes to animation time, there are two choices: [SMIL](http://en.wikipedia.org/wiki/Synchronized_Multimedia_Integration_Language) or javascript. SMIL is relatively limited in its capabilities (simple motion tweens, transitions; but not interactivity), so I ended up using [Snap.svg](http://snapsvg.io/) - which was surprisingly powerful and easy to use.  
+
+I won't go over the code here because it's essentially straightforward HTML5 and simple javascript. Take a look at [panel.html](https://github.com/Libbum/Chadburn/blob/master/eotserver/panel.html) and the [static/](https://github.com/Libbum/Chadburn/tree/master/eotserver/static) on Github if you're interested.
+
+Here's a quick look at the panel itself:
+
+![Dynamically scaling awesome and waves to make you feel like you're actually controlling a ship.](/images/eotpanel.png)
+
+Usage is pretty simple. When the mechanical E.O.T. updates, the socket server will broadcast the new state and the red indicator will move to the associated position. To acknowledge this command, the user clicks on the appropriate region, which will send and acceptence back to the mechanical version, as well as update the user's virtual chadburn state.
+
+A quick example of all of this happening can be watched below. For now I'm not allowing the server visible to the internet so you can't test it out for your self just now. This will be possible once it's installed and tested on Fenchurch.
+
+<iframe class="youtube" width="560" height="315" src="//www.youtube.com/embed/XEiyiv0jKXQ" frameborder="0" allowfullscreen></iframe><br>
+
+There's a small [π](http://blog.timesunion.com/tech/files/2010/03/mozartsghost.png) button in the bottom right hand corner that will bring up the debug menu if you want to fiddle. The response commands are listed in the `WebSocketHandler` class of the [server code](/projects/chadburn/2013-12-27-Web-Server.html#code).
+
+![Such power](/images/eotdebug.png)

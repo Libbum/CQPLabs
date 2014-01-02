@@ -439,6 +439,10 @@ p.foundabug {
     clear:both;
 }
 
+.youtube {
+    margin: 0 auto;
+    display: block;
+}
 
 /*--------------------------------------------------------------------------
  * styling for divs with ids
