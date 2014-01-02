@@ -1,7 +1,0 @@
----
-title: Genesis
-main: chadburn
-author: Tim
----
-
-Here lies the first post for the E.O.T.
