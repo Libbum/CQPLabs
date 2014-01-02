@@ -4,9 +4,9 @@
  * tag definitions
  ------------------------------------------------------------------------*/
 body,html{
-    font-size: 16px;
+    font-size: 18px;
     font-family: "Georgia", serif;
-    line-height: 29px;
+    line-height: 30px;
     color:#0c1a30;
     padding:0;
     height: 100%;
@@ -42,7 +42,7 @@ h1{
 }
 
 h2{
-    font-size: 22px;
+    font-size: 35px;
 }
 
 h3 a:link, h3 a:visited, h2 a:link, h2 a:visited {
@@ -156,7 +156,7 @@ pre.code, .code-container, pre.shell, .faqs {
 }
 
 #blog-post .crumb-title {
-    font-size: 30px;
+    font-size: 35px;
 }
 
 #blog-post .crumb-divider {
@@ -195,6 +195,8 @@ pre.code, .code-container, pre.shell, .faqs {
     width: 700px;
     padding-right: 8px;
     float: left;
+    font-size: 21px;
+    line-height: 30px;
 }
 
 
@@ -308,6 +310,8 @@ td.summary {
 
 
 .singlecolumn {
+    font-size: 22px;
+    line-height: 33px;
     width: 728px;
     margin-top: 20px;
     padding-bottom: 58px;
@@ -369,9 +373,10 @@ p.foundabug {
 {
     margin:0;
     border-bottom: 1px solid #c2d1e1;
-    line-height: 44px;
+    line-height: 50px;
     margin-bottom: 13px;
     padding:0;
+    font-size: 35px;
 }
 
 .newspaper .inner h3, .singlecolumn h3,
