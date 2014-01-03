@@ -93,7 +93,8 @@ readerOpts =
   let extensions =
         S.fromList [ Ext_tex_math_dollars
                    , Ext_inline_code_attributes
-                   , Ext_abbreviations
+                   , Ext_pipe_tables
+                   , Ext_table_captions
                    ]
   in def { readerSmart = True
          , readerExtensions = S.union extensions (writerExtensions def)

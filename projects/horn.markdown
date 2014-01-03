@@ -1,6 +1,6 @@
 ---
 title: Haskell Horn
-date: 2013-12-21
+date: 2013-12-30
 ---
 
 The `Haskell` Horn is a work of genius and madness.  Combining the ancients arts of blacksmithing and tom-foolery; it shall stand as a monument to the nouveau art of `Haskell`.  
