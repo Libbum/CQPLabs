@@ -1,6 +1,5 @@
 ---
 title: E.O.T. Panel
-main: chadburn
 author: Tim
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: Horn Brainstorming
-main: horn
 author: David
 ---
 

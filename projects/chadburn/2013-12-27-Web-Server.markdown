@@ -1,6 +1,5 @@
 ---
 title: Web Server
-main: chadburn
 author: Tim
 ---
 

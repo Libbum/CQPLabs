@@ -18,27 +18,30 @@ main = hakyllWith config $ do
         route   idRoute
         compile compressCssCompiler
 
+    categories <- buildCategories "projects/*/*" $ fromCapture "projects/*.markdown"
+
+    tagsRules categories $ \tag pattern -> do
+        route $ setExtension "html"
+        compile $ do
+            posts <- postList categories pattern recentFirst
+            compiled <- getResourceBody >>= pandocHtml5Compiler (storeDirectory config)
+            loadAndApplyTemplate "templates/project.html" (constField "posts" posts `mappend` defaultContext) compiled
+            >>= loadAndApplyTemplate "templates/default.html" (mathCtx `mappend` defaultContext)
+            >>= relativizeUrls
+
     match "projects/*/*" $ do
         route $ setExtension "html"
         compile $ do
             compiled <- getResourceBody >>= pandocHtml5Compiler (storeDirectory config)
-            loadAndApplyTemplate "templates/post.html" postCtx compiled
+            loadAndApplyTemplate "templates/post.html" (categoryField "category" categories `mappend` postCtx) compiled
             >>= saveSnapshot "content"
             >>= loadAndApplyTemplate "templates/default.html" (mathCtx `mappend` postCtx)
-            >>= relativizeUrls
-
-    match "projects/*" $ do
-        route $ setExtension "html"
-        compile $ do
-            compiled <- getResourceBody >>= pandocHtml5Compiler (storeDirectory config)
-            loadAndApplyTemplate "templates/project.html" defaultContext compiled
-            >>= loadAndApplyTemplate "templates/default.html" (mathCtx `mappend` defaultContext)
             >>= relativizeUrls
 
     create ["archive.html"] $ do
         route idRoute
         compile $ do
-            posts <- recentFirst =<< loadAll "projects/*/*"
+            posts <- recentFirst =<< loadAllSnapshots "projects/*/*" "content"
             let archiveCtx =
                     listField "posts" postCtx (return posts) `mappend`
                     constField "title" "Archives"            `mappend`
@@ -75,7 +78,7 @@ main = hakyllWith config $ do
         route idRoute
         compile $ do
             posts <- (take 5) <$> (recentFirst =<< loadAll "projects/*/*")
-            projects <- recentFirst =<< loadAll "projects/*"
+            projects <- (take 5) <$> (recentFirst =<< loadAll "projects/*")
             let indexCtx =
                     listField "posts" postCtx (return posts)              `mappend`
                     listField "projects" defaultContext (return projects) `mappend`
@@ -104,3 +107,12 @@ atomFeedConfig = FeedConfiguration
     , feedRoot        = "http://cqplabs.neophilus.net"
     }
 
+postList :: Tags -> Pattern -> ([Item String] -> Compiler [Item String]) -> Compiler String
+postList categories pattern preprocess' = do
+    postItemTpl <- loadBody "templates/category-posts.html"
+    posts <- loadAll pattern
+    processed <- preprocess' posts
+    applyTemplateList postItemTpl (tagsCtx categories) processed
+
+tagsCtx :: Tags -> Context String
+tagsCtx tags = tagsField "categories" tags `mappend` postCtx
