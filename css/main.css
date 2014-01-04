@@ -206,12 +206,25 @@ pre.code, .code-container, pre.shell, .faqs {
     -webkit-border-radius: 10px;
 }
 
-.faqs a {
-    color: #96C1D4;
+.archive-summary {
+   font-family: "PT Sans", "Arial", sans-serif;   
+   font-size: 14px;
+   line-height: 1.6em;
+   margin-left: 20px;
 }
 
-.faqs a:hover, .faqs a:active {
-    color: #FFFAEB;
+.archive-highlight {
+    color: #456999;
+}
+
+
+#cols2 {
+    -moz-column-count: 2;
+    -moz-column-gap: 50px;
+    -webkit-column-count: 2;
+    -webkit-column-gap: 50px;
+    column-count: 2;
+    column-gap: 50px;
 }
 
 #blog-post .crumb-title {

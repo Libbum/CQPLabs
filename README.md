@@ -4,5 +4,6 @@ This code is distributed under the [MIT License](http://opensource.org/licenses/
 
 ## TODO:
 
-* [X] Caption on code is fine but on figures it's not.
-* [ ] Project pages should have a list of blog posts on them.
+- [X] Caption on code is fine but on figures it's not.
+- [X] Project pages should have a list of blog posts on them.
+- [X] Archive page (post list) should have category information

@@ -23,7 +23,7 @@ main = hakyllWith config $ do
     tagsRules categories $ \tag pattern -> do
         route $ setExtension "html"
         compile $ do
-            posts <- postList categories pattern recentFirst
+            posts <- postList categories pattern "templates/category-posts.html" recentFirst
             compiled <- getResourceBody >>= pandocHtml5Compiler (storeDirectory config)
             loadAndApplyTemplate "templates/project.html" (constField "posts" posts `mappend` defaultContext) compiled
             >>= loadAndApplyTemplate "templates/default.html" (mathCtx `mappend` defaultContext)
@@ -41,10 +41,10 @@ main = hakyllWith config $ do
     create ["archive.html"] $ do
         route idRoute
         compile $ do
-            posts <- recentFirst =<< loadAllSnapshots "projects/*/*" "content"
+            posts <- postList categories "projects/*/*" "templates/archive-posts.html" recentFirst
             let archiveCtx =
-                    listField "posts" postCtx (return posts) `mappend`
-                    constField "title" "Archives"            `mappend`
+                    constField "posts" posts      `mappend`
+                    constField "title" "Archives" `mappend`
                     defaultContext
 
             makeItem ""
@@ -107,12 +107,10 @@ atomFeedConfig = FeedConfiguration
     , feedRoot        = "http://cqplabs.neophilus.net"
     }
 
-postList :: Tags -> Pattern -> ([Item String] -> Compiler [Item String]) -> Compiler String
-postList categories pattern preprocess' = do
-    postItemTpl <- loadBody "templates/category-posts.html"
+postList :: Tags -> Pattern -> Identifier -> ([Item String] -> Compiler [Item String]) -> Compiler String
+postList categories pattern template preprocess' = do
+    postItemTpl <- loadBody template
     posts <- loadAll pattern
     processed <- preprocess' posts
     applyTemplateList postItemTpl (tagsCtx categories) processed
 
-tagsCtx :: Tags -> Context String
-tagsCtx tags = tagsField "categories" tags `mappend` postCtx

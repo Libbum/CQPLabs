@@ -2,7 +2,8 @@
 
 module Site.Fields (
   postCtx,
-  mathCtx
+  mathCtx,
+  tagsCtx
 ) where
 
 import Data.Monoid (mappend)
@@ -19,3 +20,7 @@ mathCtx = field "mathjax" $ \item -> do
     return $ if "mathjax" `M.member` metadata
                   then "<script type=\"text/javascript\" src=\"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML\"></script>"
                   else ""
+
+tagsCtx :: Tags -> Context String
+tagsCtx tags = categoryField "categories" tags `mappend` postCtx
+
