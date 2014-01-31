@@ -14,3 +14,9 @@ Wielded by the defender of the group; the physics sword shall be inscribed with 
 The sword shall also be ceremonial in purpose, being used to "knight" new Doctors, as well as being paraded about at ceremonies of other sorts.  We have been promised titanium nitride coatings, which can give whatever we want a golden coating.  This could give the inscriptions a gold inlay, after the rest of the blade has been ground down to a mirror polished steel.
 
 This forms the first piece of the ceremonial set, the others being The Shield, The Sceptre, The Crown and The Hammock.
+
+##ON PERMANENT HIATUS
+
+Due to Victorian laws regarding the creation and ownership of swords, this project is on permanent hiatus until a suitable arrangement can be organised.  This may never happen, so don't hold your breath.
+
+![How did the biologists manage this!?  Where's my sw...  oh.  Wait.][/images/cthulhu.jpg]
