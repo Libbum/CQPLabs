@@ -96,7 +96,7 @@ main = hakyllWith config $ do
 --------------------------------------------------------------------------------
 config :: Configuration
 config = defaultConfiguration
-         { deployCommand = "rsync -avz -e ssh ./_site/ Neophilus:www/cqplabs" }
+         { deployCommand = "rsync -rlDhvz --delete --filter='P stats' -e ssh ./_site/ Akasha:cqplabs" }
 
 atomFeedConfig :: FeedConfiguration
 atomFeedConfig = FeedConfiguration
