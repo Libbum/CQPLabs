@@ -1,18 +1,25 @@
+# If cygwin gives you issues with UTF-8, run .scripts/codePage
+ifeq ($(OS), Windows_NT)
+	exe := ./site.exe
+else
+	exe := ./site
+endif
+
 clean: site
-	./site clean
+	$(exe) clean
 
 deploy: clean rebuild
-	./site deploy
+	$(exe) deploy
 
 post:
 	echo -e '---\ntitle: '${TITLE}'\nmain: '${PROJECT}'\n---\n\n' > projects/${PROJECT}/`date +%Y-%m-%d`-${TITLE}.markdown
 	vim projects/${PROJECT}/`date +%Y-%m-%d`-${TITLE}.markdown
 
 preview: rebuild
-	./site watch
+	$(exe) watch
 
 rebuild: site
-	./site rebuild
+	$(exe) rebuild
 
 site: site.hs
-	ghc --make site.hs
+	ghc --make -threaded site.hs

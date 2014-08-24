@@ -3,8 +3,8 @@
 import Control.Applicative ((<$>))
 import Data.Monoid (mappend)
 import Hakyll
-import Site.Fields
-import Site.Pandoc
+import Includes.Fields
+import Includes.Pandoc
 
 --------------------------------------------------------------------------------
 main :: IO ()
