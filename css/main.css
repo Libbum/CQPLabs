@@ -61,12 +61,12 @@ h1,h2,h3,h4{
     font-weight: normal;
     text-shadow: #fff 0px 1px 1px;
     letter-spacing:0.1em;
-    font-family: "Gill Sans", "PT Sans", "Arial", sans-serif;
+    font-family: "PT Sans", "Arial", sans-serif;
     text-transform: uppercase;
 }
 
 h1 code, h2 code, h3 code, h4 code {
-    font-family: "Gill Sans", "PT Sans", "Arial", sans-serif;
+    font-family: "PT Sans", "Arial", sans-serif;
     font-size: inherit;
 }
 
@@ -245,7 +245,7 @@ pre.code, .code-container, pre.shell, .faqs {
 
 
 #blog-post .post-date {
-    font-family: "Gill Sans", "PT Sans", "Arial", sans-serif;
+    font-family: "PT Sans", "Arial", sans-serif;
     font-size: 24px;
     text-transform: uppercase;
     text-align: right;
@@ -349,7 +349,6 @@ pre.code, .code-container, pre.shell, .faqs {
 
 
 tr.post {
-    /*font-family: "Gill Sans", "PT Sans", "Arial", sans-serif;*/
     font-family: "PT Sans", "Arial", sans-serif;
 }
 
