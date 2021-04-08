@@ -1,6 +1,5 @@
 ---
 title: Badges List
-author: Jesse
 ---
 
 # Number of papers
